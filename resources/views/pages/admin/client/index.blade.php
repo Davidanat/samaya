@@ -14,7 +14,7 @@
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Master</h2>
             <p class="dashboard-subtitle">
-                Daftar Data Karyawan
+                Daftar Data Client
             </p>
         </div>
         <div class="dashboard-content">
@@ -24,7 +24,7 @@
                         <div class="card-body">
                             <div class= "col text-left">
                             <a href="{{  route('user.create') }}" class="btn btn-primary mb-3">
-                                + Create Karyawan Baru
+                                + Create Client Baru
                             </a>
                             </div>
                             <div class="table-responsive">
@@ -32,12 +32,12 @@
                                     <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Name</th>
+                                        <th>ID Client</th>
+                                        <th>Client</th>
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Phone</th>
                                         <th>Email</th>
-                                        <th>No KTP</th>
                                         <th>No NPWP</th>
                                         <th>Status</th>
                                         <th>Setting</th>
@@ -46,7 +46,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 0 @endphp
-                                        @foreach ($user as $product)
+                                        @foreach ($client as $product)
                                         @php $no++ @endphp
                                         <tr>
                                             <td>{{ $no }}</td>
@@ -64,7 +64,6 @@
                                                 @else
                                                 <td>Kontrak</td>
                                             @endif
-                                            <td> {{ $product->setting}} </td>
                                             <td>
                                                 <div class="btn-group">
                                                     <div class="dropdown">

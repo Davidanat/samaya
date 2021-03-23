@@ -34,7 +34,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        {{ Auth::user()->name }}
+                        My Account
                     </a>
                 </li>
                 <li class="nav-item">

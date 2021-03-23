@@ -57,31 +57,37 @@
               Data Karyawan
             </a>
             <a
-              href="{{ route('vendors.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('vendors')) ? 'active' : '' }} "
+              href="{{ route('client.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('client')) ? 'active' : '' }} "
             >
               Data Client
             </a>
             <a
-              href="{{ route('kategori.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('kategori')) ? 'active' : '' }} "
+              href="{{ route('home') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('house_keeping')) ? 'active' : '' }} "
             >
-              Data House Keeping
+              Data House Keeper
             </a>
             TRANSACTION
             <a
-              href="{{ route('produk.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('produk')) ? 'active' : '' }} "
+              href="{{ route('home') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('on_order')) ? 'active' : '' }} "
             >
               On Going Order
             </a>
             <a
-              href="{{ route('transaksi.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('transaksi')) ? 'active' : '' }} "
+              href="{{ route('home') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('history_order')) ? 'active' : '' }} "
             >
               History Order
             </a>
             REPORT
+            <a
+              href="{{ route('home') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('report')) ? 'active' : '' }} "
+            >
+              Report
+            </a>
           </div>
         </div>
 
@@ -110,8 +116,43 @@
                 <!-- Desktop Menu -->
                 <ul class="navbar-nav d-none d-lg-flex ml-auto">
                   <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link">
+                        @php
+                            $carts = \App\User::count();
+                        @endphp
+                        @if($carts > 0)
+                        <img src="/images/email.png" alt="" />
+                            <div class="card-badge">{{ $carts }}</div>
+                        @else
+                            <img src="/images/email.png" alt="" />
+                        @endif
+                    </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a href="#"
+                      class="nav-link"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                    >
+                        @php
+                            $carts = \App\User::count();
+                        @endphp
+                        @if($carts > 0)
+                            <img src="/images/bell.png" alt="" />
+                            <div class="card-badge">{{ $carts }}</div>
+                        @else
+                            <img src="/images/bell.png" alt="" />
+                        @endif
+                    </a>
+                    <div class="dropdown-menu">
+                      <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                      <a href="{{ route('dashboard') }}" class="dropdown-item">Settings</a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
                     <a href="#" class="nav-link">
-                        {{ Auth::user()->name }}
+                        My Account
                     </a>
                   </li>
                   <li class="nav-item">
@@ -123,28 +164,20 @@
                         @csrf
                     </form>
                   </li>
-                  {{-- <li class="nav-item">
-                    <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
-                        @php
-                            $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
-                        @endphp
-                        @if($carts > 0)
-                            <img src="/images/icon-cart-filled.svg" alt="" />
-                            <div class="card-badge">{{ $carts }}</div>
-                        @else
-                            <img src="/images/icon-cart-empty.svg" alt="" />
-                        @endif
-                    </a>
-                  </li> --}}
                 </ul>
 
                 <ul class="navbar-nav d-block d-lg-none">
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}" class="nav-link">
-                            Hi, {{ Auth::user()->name }}
-                        </a>
-                    </li>
-                </ul>    
+                  <li class="nav-item">
+                      <a href="{{ route('dashboard') }}" class="nav-link">
+                          Hi, {{ Auth::user()->name }}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('home') }}" class="nav-link d-inline-block">
+                          Cart
+                      </a>
+                  </li>
+                </ul>        
               </div>
             </div>
           </nav>
